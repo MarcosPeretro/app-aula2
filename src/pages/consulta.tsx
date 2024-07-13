@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
-const linha = (item:any) =>{
-    return(
+const linha = (item: any) => {
+    return (
         <tr>
             <td>{item.id}</td>
             <td>{item.nome}</td>
@@ -11,19 +12,19 @@ const linha = (item:any) =>{
     )
 }
 
-export default function Consulta(){
-    const[contatos,setContatos] = useState([])
+export default function Consulta() {
+    const [contatos, setContatos] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch("http://localhost:3000/contatos")
-        .then(response => response.json())
-        .then(dados => setContatos(dados))
-        .catch(error => alert(error))
-    },[])
-    
-    return(
-        <div>
-            <h2>Lista de contatos</h2>
+            .then(response => response.json())
+            .then(dados => setContatos(dados))
+            .catch(error => alert(error))
+    }, [])
+
+    return (
+        <div className="container">
+            <h2 className="text-center">Lista de contatos</h2>
             <hr />
             <table className="table">
                 <thead>
@@ -34,11 +35,14 @@ export default function Consulta(){
                     </tr>
                 </thead>
                 <tbody>
-                    { 
+                    {
                         contatos.map(ct => linha(ct))
                     }
                 </tbody>
             </table>
+            <hr />
+            <Link className="btn" to="/">Home</Link>
+            <Link className="btn" to="/cadastro">Cadastro</Link>
         </div>
     )
 }
