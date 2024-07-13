@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 const linha = (item: any) => {
     return (
-        <tr>
+        <tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.nome}</td>
             <td>{item.email}</td>
